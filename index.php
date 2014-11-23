@@ -68,7 +68,7 @@
 			<div>Question:<span data-bind="text: question"></span>
 			</div>
 			<!-- ko foreach: answers-->
-			<div>Answer:<span data-bind="text:answers.name"></span>
+			<div>Answer:<span data-bind="text:name"></span>
 			</div>
 			<!-- /ko-->
 
