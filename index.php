@@ -10,7 +10,7 @@
 				<div class="form-group">
 					<label for="newQuestion" class="col-sm-2 control-label">Question</label>
 					<div class="col-sm-10">
-						<input type="email" class="form-control" id="newQuestion">
+						<input type="email" class="form-control" id="newQuestion" data-bind="value: newQuestion.question">
 					</div>
 				</div>
 				<div class="form-group">
@@ -18,33 +18,36 @@
 					<div class="col-sm-10">
 						<div class="radio">
 							<label>
-								<input type="radio" name="type">
+								<input type="radio" name="type" value="yesno" data-bind= "checked: newQuestion.type">
 								Yes/No form
 							</label>
 						</div>
 						<div class="radio">
 							<label>
-								<input type="radio" name="type">
+								<input type="radio" name="type" value="multiple" data-bind="checked: newQuestion.type">
 								Multiple Choice form
 							</label>
 						</div>
+						<div data-bind ="visible: (newQuestion.type() == 'multiple')">
+							<!-- ko foreach: newQuestion.answers -->
 							<div class="form-group">
 								<label class="col-sm-2 control-label">
-									<div class="text-left">Choise #<span></span></div>
+									<div class="text-left">Choise #<span data-bind="text: $index()+1"></span></div>
 								</label>
 								<div class="col-sm-10">
 									<div class="input-group">
-										<input type="text" class="form-control">
+										<input type="text" class="form-control" data-bind="value:name">
 										<span class="input-group-btn">
-											<button class="btn btn-default">
-												<span class="glyphicon glyphicon-remove"></span>
+											<button class="btn btn-default" data-bind="click: $root.removeAnswer">
+												<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 											</button>
 										</span>
 									</div>
 								</div>
 							</div>
+							<!--/ko -->
 							<div class="col-sm-offset-2">
-								<button type="button" class="btn btn-link">
+								<button type="button" class="btn btn-link" data-bind="click: addNewAnswer">
 									<span class="glyphicon glyphicon-plus"></span>
 									Add new Choice
 								</button>
@@ -54,11 +57,25 @@
 				</div>
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" class="btn btn-success">Add Pool</button>
+						<button type="submit" class="btn btn-success" data-bind="click: addQuestion">Add Pool</button>
 					</div>
-				</div>
+				</div>	
 			</form>
 		</div>
+		<br></br>
+		<div class="editedpoll">
+			<!-- ko foreach: questions -->
+			<div>Question:<span data-bind="text: question"></span>
+			</div>
+			<!-- ko foreach: answers-->
+			<div>Answer:<span data-bind="text:answers.name"></span>
+			</div>
+			<!-- /ko-->
+
+			<!--/ko -->
+		</div>
+		<div class="editpoll">
+		</div>	
 	</div>
 	<script type='text/javascript' src='assets/knockout-3.2.0.js'></script>
 	<script type='text/javascript' src='assets/jquery-1.11.1.min.js'></script>
