@@ -9,7 +9,7 @@
 		<div class="addpoll">
 			<form class="form-horizontal" role="form">
 				<div class="form-group">
-					<label for="newQuestion" class="col-sm-2 control-label">Question</label>
+					<label for="newQuestion" class="col-sm-2 control-label"><span class="circle" data-bind=" text: questions().length +1"></span>Question</label>
 					<div class="col-sm-10">
 						<input type="email" class="form-control" id="newQuestion" data-bind="value: newQuestion.question">
 					</div>
@@ -69,7 +69,7 @@
 			<!-- ko foreach: questions -->
 			<div class="form-horizontal">
 				<div class="form-group">
-					<label class= "col-sm-2 control-label">Question:</label>
+					<label class= "col-sm-2 control-label"><span class="circle" data-bind="text: $index()+1"></span>Question:</label>
 					<div class="col-sm-8">
 						<span data-bind="text: question"></span>
 					</div>
@@ -95,6 +95,10 @@
 			</div>
 			<!--/ko -->
 		</div>
+		<div class="edotablepoll">
+			
+		</div>
+
 	</div>
 	<script type='text/javascript' src='assets/knockout-3.2.0.js'></script>
 	<script type='text/javascript' src='assets/jquery-1.11.1.min.js'></script>

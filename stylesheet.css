@@ -4,3 +4,9 @@
 .editedpoll li{
 	list-style-type: none;
 }
+.circle{
+	border-radius: 50% ;
+	margin-right: 5px;
+	padding: 1px 5px;
+	background-color: #00CC66;
+}
