@@ -22,6 +22,9 @@ var ViewModel = {
 			answers: this.newQuestion.answers()
 		};
 		this.questions.push(newQuestion);
+	},
+	removeQuestion: function(item){
+		ViewModel.questions.remove(item);
 	}
 };
 

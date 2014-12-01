@@ -2,6 +2,7 @@
 <html>
 <head>
 	<link rel="stylesheet" type='text/css' href='assets/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='stylesheet.css'/>
 </head>
 <body>
 	<div class="container">
@@ -62,20 +63,38 @@
 				</div>	
 			</form>
 		</div>
+	
 		<br></br>
 		<div class="editedpoll">
 			<!-- ko foreach: questions -->
-			<div>Question:<span data-bind="text: question"></span>
+			<div class="form-horizontal">
+				<div class="form-group">
+					<label class= "col-sm-2 control-label">Question:</label>
+					<div class="col-sm-8">
+						<span data-bind="text: question"></span>
+					</div>
+					<div class="col-sm-1">
+						<button type="button" class="btn btn-link" data-bind="click:">
+							<span class="glyphicon glyphicon-pencil"></span>
+						</button>
+					</div>
+					<div class="col-sm-1">
+						<button type="button" class="btn btn-link" data-bind="click:">
+							<span class="glyphicon glyphicon-remove" data-bind="click:$root.removeQuestion"></span>
+						</button>
+					</div>
+				</div>
+				<div class="form-group">
+					<b class="col-sm-2 control-label">Answer:</b>
+					<ul class="col-sm-10">
+					<!-- ko foreach: answers-->
+						<li data-bind="text:name"></li>
+					<!-- /ko-->
+					</ul>
+				</div>
 			</div>
-			<!-- ko foreach: answers-->
-			<div>Answer:<span data-bind="text:name"></span>
-			</div>
-			<!-- /ko-->
-
 			<!--/ko -->
 		</div>
-		<div class="editpoll">
-		</div>	
 	</div>
 	<script type='text/javascript' src='assets/knockout-3.2.0.js'></script>
 	<script type='text/javascript' src='assets/jquery-1.11.1.min.js'></script>
