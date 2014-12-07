@@ -25,7 +25,15 @@ var ViewModel = {
 	},
 	removeQuestion: function(item){
 		ViewModel.questions.remove(item);
-	}
+	},
+	edit: ko.observable(false),
+	editQuestion: function(){
+		ViewModel.edit(true);
+	},
+	cancelEdit:function(){
+		ViewModel.edit(false);
+	},
+	
 };
 
 ko.applyBindings(ViewModel);

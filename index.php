@@ -11,7 +11,7 @@
 				<div class="form-group">
 					<label for="newQuestion" class="col-sm-2 control-label"><span class="circle" data-bind=" text: questions().length +1"></span>Question</label>
 					<div class="col-sm-10">
-						<input type="email" class="form-control" id="newQuestion" data-bind="value: newQuestion.question">
+						<input type="text" class="form-control" id="newQuestion" data-bind="value: newQuestion.question">
 					</div>
 				</div>
 				<div class="form-group">
@@ -69,12 +69,12 @@
 			<!-- ko foreach: questions -->
 			<div class="form-horizontal">
 				<div class="form-group">
-					<label class= "col-sm-2 control-label"><span class="circle" data-bind="text: $index()+1"></span>Question:</label>
+					<b class= "col-sm-2 control-label"><span class="circle" data-bind="text: $index()+1"></span>Question:</b>
 					<div class="col-sm-8">
 						<span data-bind="text: question"></span>
 					</div>
 					<div class="col-sm-1">
-						<button type="button" class="btn btn-link" data-bind="click:">
+						<button type="button" class="btn btn-link" data-bind="click:$root.editQuestion">
 							<span class="glyphicon glyphicon-pencil"></span>
 						</button>
 					</div>
@@ -93,10 +93,69 @@
 					</ul>
 				</div>
 			</div>
+
+			<div class="editablepoll" data-bind="visible: $root.edit">
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label for="" class="col-sm-2 control-label"><span class="circle" data-bind="text: $index()+1"></span>Question: </label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" data-bind= "value:question" id="">
+						</div>
+					</div>
+					<div class="form-group">
+					<b class="col-sm-2 control-label">Answers</b>
+					<div class="col-sm-10">
+						<div class="radio">
+							<label>
+								<input type="radio" name="type" value="yesno" data-bind= "checked: newQuestion.type">
+								Yes/No form
+							</label>
+						</div>
+						<div class="radio">
+							<label>
+								<input type="radio" name="type" value="multiple" data-bind="checked: newQuestion.type">
+								Multiple Choice form
+							</label>
+						</div>
+						<div data-bind ="visible: ($root.newQuestion.type() == 'multiple')">
+							<!-- ko foreach: $root.newQuestion.answers -->
+							<div class="form-group">
+								<label class="col-sm-2 control-label">
+									<div class="text-left">Choise #<span data-bind="text: $index()+1"></span></div>
+								</label>
+								<div class="col-sm-10">
+									<div class="input-group">
+										<input type="text" class="form-control" data-bind="value:name">
+										<span class="input-group-btn">
+											<button class="btn btn-default" data-bind="click: $root.removeAnswer">
+												<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+											</button>
+										</span>
+									</div>
+								</div>
+							</div>
+							<!--/ko -->
+							<div class="col-sm-offset-2">
+								<button type="button" class="btn btn-link" data-bind="click: $root.addNewAnswer">
+									<span class="glyphicon glyphicon-plus"></span>
+									Add new Choice
+								</button>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-10">
+									<button type="submit" class="btn btn-success" data-bind="click: $root.addQuestion">Edit Pool</button>
+									<button type='button' class='btn btn-link' data-bind="click: $root.cancelEdit"> Cancel</button>
+								</div>
+							</div>	
+
+
+
+						</div>
+					</div>
+				</div>
+				</form>
+			</div>
 			<!--/ko -->
-		</div>
-		<div class="edotablepoll">
-			
 		</div>
 
 	</div>
