@@ -119,7 +119,7 @@
 							</label>
 						</div>
 						<div data-bind ="visible: (type() == 'multiple')">
-							<!-- ko foreach: answers -->
+							<!-- ko foreach:answers-->
 							<div class="form-group">
 								<label class="col-sm-2 control-label">
 									<div class="text-left">Choise #<span data-bind="text: $index()+1"></span></div>
@@ -136,6 +136,7 @@
 								</div>
 							</div>
 							<!--/ko -->
+							
 							<div class="col-sm-offset-2">
 								<button type="button" class="btn btn-link" data-bind="click: $root.addEditAnswer">
 									<span class="glyphicon glyphicon-plus"></span>
@@ -144,10 +145,11 @@
 							</div>
 							<div class="form-group">
 								<div class="col-sm-10">
-									<button type="submit" class="btn btn-success" data-bind="click: $root.addQuestion">Edit Pool</button>
+									<button type="submit" class="btn btn-success" data-bind="click: $root.saveEdit">Edit Pool</button>
 									<button type='button' class='btn btn-link' data-bind="click: $root.cancelEdit"> Cancel</button>
 								</div>
-							</div>	
+							</div>
+
 						</div>
 					</div>
 				</div>

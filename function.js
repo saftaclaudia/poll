@@ -26,7 +26,6 @@ var ViewModel = {
 	},
 
 	addQuestion: function () {
-		var answersClone = [];
 		var answersClone = this.newQuestion.answers().map(function(item) {
 			return {
 				name: ko.observable(item.name)
@@ -44,17 +43,21 @@ var ViewModel = {
 	removeQuestion: function(item){
 		ViewModel.questions.remove(item);
 	},
-	
+
 	edit: ko.observable(false),
 	editQuestion: function(){
 		ViewModel.edit(true);
 	},
+
 	cancelEdit:function(){
 		ViewModel.edit(false);
+		this.newQuestion.question(this.newQuestion.question);
+		this.type(this.newQuestion.type);
+		this.answers(this.answers);
 	},
 
 	saveEdit: function(){
-
+		ViewModel.edit(false);
 	}
 	
 };
