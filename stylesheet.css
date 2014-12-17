@@ -1,6 +1,9 @@
 .editedpoll ul, .editedpoll div {
 	padding-top: 7px;
 }
+.padding{
+	padding-top:0;
+}
 .editedpoll li{
 	list-style-type: none;
 }
