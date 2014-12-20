@@ -67,7 +67,7 @@
 		<br></br>
 		<div class="editedpoll">
 			<!-- ko foreach: questions -->
-			<div class="form-horizontal">
+			<div class="form-horizontal" data-bind="visible: !edit()">
 				<div class="form-group">
 					<b class= "col-sm-2 control-label"><span class="circle" data-bind="text: $index()+1"></span>Question:</b>
 					<div class="col-sm-8">
@@ -94,8 +94,8 @@
 					
 				</div>
 			</div>
-
-			<div class="editablepoll" data-bind="visible: $root.edit">
+			
+			<div class="editablepoll" data-bind="visible:edit">
 				<form class="form-horizontal">
 					<div class="form-group">
 						<label for="" class="col-sm-2 control-label"><span class="circle" data-bind="text: $index()+1"></span>Question: </label>
@@ -118,6 +118,7 @@
 								Multiple Choice form
 							</label>
 						</div>
+						
 						<div data-bind ="visible: (type() == 'multiple')">
 							<!-- ko foreach:answers-->
 							<div class="form-group">
@@ -136,23 +137,22 @@
 								</div>
 							</div>
 							<!--/ko -->
-							
 							<div class="col-sm-offset-2">
 								<button type="button" class="btn btn-link" data-bind="click: $root.addEditAnswer">
 									<span class="glyphicon glyphicon-plus"></span>
 									Add new Choice
 								</button>
 							</div>
-							<div class="form-group">
-								<div class="col-sm-10">
-									<button type="submit" class="btn btn-success" data-bind="click: $root.saveEdit">Edit Pool</button>
-									<button type='button' class='btn btn-link' data-bind="click: $root.cancelEdit"> Cancel</button>
-								</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-10">
+								<button type="submit" class="btn btn-success" data-bind="click: $root.saveEdit">Edit Pool</button>
+								<button type='button' class='btn btn-link' data-bind="click: $root.cancelEdit"> Cancel</button>
 							</div>
-
 						</div>
 					</div>
 				</div>
+
 				</form>
 			</div>
 			<!--/ko -->

@@ -33,9 +33,10 @@ var ViewModel = {
 		});
 
 		var newQuestion = {
-			question: ko.observable (this.newQuestion.question()),
-			type: ko.observable(this.newQuestion.type()),
-			answers: ko.observableArray(answersClone)
+			question: this.newQuestion.question(),
+			type:ko.observable(this.newQuestion.type()),
+			answers:ko.observableArray(answersClone),
+			edit:ko.observable(false),
 		};
 			this.questions.push(newQuestion);
 	},
@@ -44,20 +45,18 @@ var ViewModel = {
 		ViewModel.questions.remove(item);
 	},
 
-	edit: ko.observable(false),
 	editQuestion: function(){
-		ViewModel.edit(true);
+		this.edit(true);
 	},
 
 	cancelEdit:function(){
-		ViewModel.edit(false);
-		this.newQuestion.question(this.newQuestion.question);
-		this.type(this.newQuestion.type);
-		this.answers(this.answers);
+		this.edit(false);
+	
 	},
 
 	saveEdit: function(){
-		ViewModel.edit(false);
+		this.edit(false);
+
 	}
 	
 };
