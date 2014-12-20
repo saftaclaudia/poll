@@ -32,14 +32,16 @@ var ViewModel = {
 			};
 		});
 
-		var newQuestion = {
-			question: this.newQuestion.question(),
+		var questionToBeAddedToArray = {
+			question: ko.observable(this.newQuestion.question()),
 			type:ko.observable(this.newQuestion.type()),
 			answers:ko.observableArray(answersClone),
 			edit:ko.observable(false),
 		};
-			this.questions.push(newQuestion);
+
+		this.questions.push(questionToBeAddedToArray);
 	},
+
 
 	removeQuestion: function(item){
 		ViewModel.questions.remove(item);
@@ -47,11 +49,34 @@ var ViewModel = {
 
 	editQuestion: function(){
 		this.edit(true);
+
+		var answersClone = this.answers().map(function(item) {
+			return {
+				name: item.name
+			};
+		});
+
+		var questionToBeEdited = {
+			question: this.question(),
+			type: this.type(),
+			answers: answersClone
+		};
+
+		this.clone = questionToBeEdited;
 	},
 
 	cancelEdit:function(){
+		var self = this;
+
+		this.question( this.clone.question );
+		this.type( this.clone.type );
+		this.answers.removeAll();
+
+		this.clone.answers.forEach(function(item) {
+			self.answers.push(item );
+		});
+
 		this.edit(false);
-	
 	},
 
 	saveEdit: function(){
